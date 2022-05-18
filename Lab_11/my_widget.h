@@ -6,15 +6,15 @@
 #include <QMouseEvent>
 #include <QMenu>
 
+#define FIG_NUM 5
+#define CURR_QPOINT_TYPE QPoint
+
 class MyWidget : public QWidget {
 
     string figInfo = "";
     QPoint figInfoPos;
-
-    //std::unique_ptr<AbstractFigure> figArray[FIG_NUM];
-    vector<std::unique_ptr<AbstractFigure>> figArray;
-
-    AbstractFigure * hoveredFig = nullptr;
+    std::array<std::unique_ptr<AbstractFigure<CURR_QPOINT_TYPE>>, FIG_NUM> figArray;
+    AbstractFigure<CURR_QPOINT_TYPE> * hoveredFig = nullptr;
 
     QMenu menu;
     QAction *deleteAction;
@@ -24,8 +24,12 @@ class MyWidget : public QWidget {
     void mouseMoveEvent(QMouseEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
+
+public slots:
+    void deleteFig();
+
   public:
-    MyWidget(QWidget * parent = 0);
+   explicit MyWidget(QWidget * parent);
       ~MyWidget();
 
   //public slots:
