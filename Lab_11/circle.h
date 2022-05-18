@@ -3,31 +3,26 @@
 
 #include "abstract_figure.h"
 
-class Circle : public AbstractFigure {
-	enum paramsIndexes { x_0, y_0, diameter };
-	paramsIndexes myParams = x_0;
-
+template<typename TModel>
+class Circle : public AbstractFigure<TModel> {
     const string figName = "Circle";
 
-
-    const int init_paramsNum = 3;
-    int init_x_0 = 100;
-    int init_y_0 = 200;
-	int init_diam = 60;
-
+    TModel myCenter;
+    int myDiam;
+    QPainter &myPainter;
     int circleEq(int x, int y);
     public:
 
-		Circle();
+    Circle(QPainter &painter, TModel center, int diam): myPainter(painter), myCenter(center), myDiam(diam){};
 
-		void drawFigure(QPainter *painter) override;
-        bool isMouseInside(QPoint mousePos) override;
+    void drawFigure() override;
+    bool isMouseInside(TModel mousePos) override;
 
-        void moveFig(int to_x, int to_y) override;
+    void moveFig(TModel dest) override;
 
-        string getName()override {return figName;};
+    string getName()override {return figName;};
 
-        ~Circle();
+    ~Circle();
 };
 
 #endif // CIRCLE_H

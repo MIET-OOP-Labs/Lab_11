@@ -1,38 +1,30 @@
 #include "circle.h"
 
-Circle::Circle() {
-    paramsNum = init_paramsNum;
-	params.clear();
-	params.push_back(init_x_0);
-	params.push_back(init_y_0);
-	params.push_back(init_diam);
+template<typename TModel>
+void Circle<TModel>::drawFigure() {
+    myPainter.setPen(QPen(AbstractFigure<TModel>::getColor(),
+                          AbstractFigure<TModel>::getWidth(),
+                          AbstractFigure<TModel>::getStyle()));
+    myPainter.drawEllipse(myCenter, myDiam, myDiam);
 }
 
-void Circle::drawFigure(QPainter *painter) {
-	painter->setPen(QPen(myColor, myWidth, myPenStyle));
-	int x = listGetItem(params, x_0);
-	int y = listGetItem(params, y_0);
-	int diam = listGetItem(params, diameter);
-    painter->drawEllipse(x - diam/2, y - diam/2, diam, diam);
+template<typename TModel>
+int Circle<TModel>::circleEq(int x, int y) {
+    return (x - myCenter.x())*(x - myCenter.x()) + (y - myCenter.y())*(y - myCenter.y());
 }
 
-int Circle::circleEq(int x, int y) {
-    int center_x = listGetItem(params, x_0);
-    int center_y = listGetItem(params, y_0);
-    return (x - center_x)*(x - center_x) + (y - center_y)*(y - center_y);
-}
-
-bool Circle::isMouseInside(QPoint mousePos){
-    int diam = listGetItem(params, diameter);
+template<typename TModel>
+bool Circle<TModel>::isMouseInside(TModel mousePos){
     int eq = circleEq(mousePos.x(), mousePos.y());
-    return (eq <= ((diam/2)*(diam/2)));
+    return (eq <= ((myDiam/2)*(myDiam/2)));
 }
 
-void Circle::moveFig(int to_x, int to_y) {
-    int diam = listGetItem(params, diameter);
-    list<int> moveCircle_params = { to_x, to_y, diam };
-    params.assign(moveCircle_params.begin(), moveCircle_params.end());
+template<typename TModel>
+void Circle<TModel>::moveFig(TModel dest) {
+    myCenter = dest;
+    this->drawFigure();
 }
 
-Circle::~Circle(){
+template<typename TModel>
+Circle<TModel>::~Circle(){
 }
