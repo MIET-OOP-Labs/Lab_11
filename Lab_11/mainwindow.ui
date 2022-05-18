@@ -14,16 +14,15 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>-1</x>
-      <y>-1</y>
-      <width>801</width>
-      <height>571</height>
+      <x>9</x>
+      <y>9</y>
+      <width>771</width>
+      <height>541</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -35,13 +34,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menutestMenu">
-    <property name="title">
-     <string>testMenu</string>
-    </property>
-    <addaction name="actiontestMenu"/>
-   </widget>
-   <addaction name="menutestMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actiontestMenu">
