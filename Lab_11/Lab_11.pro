@@ -15,16 +15,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     my_widget.cpp \
-    rectangle.cpp \
-    triangle.cpp
-
+    n_square.cpp
 HEADERS += \
     abstract_figure.h \
     circle.h \
     mainwindow.h \
     my_widget.h \
-    rectangle.h \
-    triangle.h
+    n_square.h
 
 FORMS += \
     mainwindow.ui
