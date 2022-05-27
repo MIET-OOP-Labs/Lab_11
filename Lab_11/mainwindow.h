@@ -16,9 +16,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public slots:
-    void deleteFig();
-
 private:
     Ui::MainWindow *ui;
 

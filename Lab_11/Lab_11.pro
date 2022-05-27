@@ -11,14 +11,19 @@ CONFIG += c++14
 
 SOURCES += \
     abstract_figure.cpp \
+    base.cpp \
     circle.cpp \
+    derived.cpp \
     main.cpp \
     mainwindow.cpp \
     my_widget.cpp \
-    n_square.cpp
+    n_square.cpp \
+    templates.cpp
 HEADERS += \
     abstract_figure.h \
+    base.h \
     circle.h \
+    derived.h \
     mainwindow.h \
     my_widget.h \
     n_square.h

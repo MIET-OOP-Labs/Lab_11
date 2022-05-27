@@ -6,18 +6,21 @@
 #include <QMouseEvent>
 #include <QMenu>
 
-#define FIG_NUM 5
-#define CURR_QPOINT_TYPE QPoint
+using curr_QPoint = QPoint;
+using curr_QPolygon = QPolygon;
+using unique_figure = std::unique_ptr<AbstractFigure<QPoint, QPolygon>>;
 
 class MyWidget : public QWidget {
 
+    Q_OBJECT
+
     string figInfo = "";
     QPoint figInfoPos;
-    std::array<std::unique_ptr<AbstractFigure<CURR_QPOINT_TYPE>>, FIG_NUM> figArray;
-    AbstractFigure<CURR_QPOINT_TYPE> * hoveredFig = nullptr;
+    vector <unique_figure> figArray;
+    int hoveredFigNum = -1;
 
-    QMenu menu;
     QAction *deleteAction;
+    QMenu *menu;
 
   protected:
     void paintEvent(QPaintEvent *) override;
@@ -25,14 +28,13 @@ class MyWidget : public QWidget {
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
+
 public slots:
     void deleteFig();
 
   public:
    explicit MyWidget(QWidget * parent);
       ~MyWidget();
-
-  //public slots:
 
 
 };

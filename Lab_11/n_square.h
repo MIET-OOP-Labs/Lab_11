@@ -6,19 +6,18 @@
 
 using namespace std;
 
-template<typename TModel>
-class n_square: public AbstractFigure<TModel> {
+template<typename TModel, typename TKey>
+class n_square: public AbstractFigure<TModel, TKey> {
 
-    const string figName = "Rectangle";
-    QPainter &myPainter;
+    const string figName = "N_square";
     vector<TModel> myVertexes;
 public:
-    n_square(QPainter &painter, const vector<TModel> & vertexes);
+    n_square(const vector<TModel> & vertexes): myVertexes(vertexes){};
 
-    void drawFigure()override;
+    void drawFigure(QPainter &painter)override;
     bool isMouseInside(TModel mousePos) override;
-    string getName()override {return figName;};
-    void moveFig(TModel dest) override;
+    string getName()override {QString returnStr = QString("%1-square").arg(myVertexes.size()); return returnStr.toStdString();};
+    void moveFig(QPainter &painter, TModel dest) override;
 
     ~n_square();
 };

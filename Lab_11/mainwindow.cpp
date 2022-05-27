@@ -5,14 +5,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
     ui->setupUi(this);
-
-    // Создаем виджет
-    wgt = new MyWidget(ui->centralwidget);
-
 }
 
-MainWindow::~MainWindow()
-{
+
+MainWindow::~MainWindow() {
     delete ui;
 }
 

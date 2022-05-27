@@ -3,22 +3,22 @@
 
 #include "abstract_figure.h"
 
-template<typename TModel>
-class Circle : public AbstractFigure<TModel> {
+template<typename TModel, typename TKey>
+class Circle : public AbstractFigure<TModel, TKey> {
     const string figName = "Circle";
 
     TModel myCenter;
     int myDiam;
-    QPainter &myPainter;
     int circleEq(int x, int y);
+
     public:
 
-    Circle(QPainter &painter, TModel center, int diam): myPainter(painter), myCenter(center), myDiam(diam){};
+    Circle(const TModel center, const int diam):myCenter(center), myDiam(diam){};
 
-    void drawFigure() override;
+    void drawFigure(QPainter &painter) override;
     bool isMouseInside(TModel mousePos) override;
 
-    void moveFig(TModel dest) override;
+    void moveFig(QPainter &painter, TModel dest) override;
 
     string getName()override {return figName;};
 
